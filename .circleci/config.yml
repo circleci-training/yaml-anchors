@@ -1,0 +1,20 @@
+version: 2.1
+
+jobs:
+  say-hello:
+    docker:
+      - image: alpine:3.15
+    steps: &greeting
+      - run:
+          name: This is our anchor
+          command: echo "Hello World!"
+
+  say-hello-again:
+    machine: true
+    steps: *greeting
+
+workflows:
+  being-friendly:
+    jobs:
+      - say-hello
+      - say-hello-again
